@@ -7,8 +7,8 @@ interface Props {
 
 const CountryCard = ({ country: { flags, name, population } }: Props) => {
   return (
-    <Card>
-      <Box height="200px" overflow="hidden">
+    <Card borderRadius={10} overflow="hidden">
+      <Box height="250px" overflow="hidden">
         <Image
           width="full"
           height="full"
