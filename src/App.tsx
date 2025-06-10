@@ -1,5 +1,9 @@
 import { Grid, GridItem } from '@chakra-ui/react';
 import NavBar from './components/NavBar';
+import CountriesGrid from './components/CountriesGrid';
+
+// TODO: wrap countries grid with a container and apply padding as well as
+// constraint.
 
 function App() {
   return (
@@ -7,7 +11,9 @@ function App() {
       <GridItem area="nav">
         <NavBar />
       </GridItem>
-      <GridItem area="main">Main</GridItem>
+      <GridItem area="main">
+        <CountriesGrid />
+      </GridItem>
     </Grid>
   );
 }
