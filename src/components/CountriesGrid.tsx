@@ -15,6 +15,8 @@ export interface Country {
   name: Name;
   flags: Flags;
   population: number;
+  region: string;
+  capital: string[];
 }
 
 const CountriesGrid = () => {
