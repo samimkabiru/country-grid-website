@@ -1,9 +1,10 @@
-import { Grid, GridItem } from '@chakra-ui/react';
+import { Grid, GridItem, HStack } from '@chakra-ui/react';
 import NavBar from './components/NavBar';
 import CountriesGrid from './components/CountriesGrid';
 import CountriesGridContainer from './components/CountriesGridContainer';
 import SearchBar from './components/SearchBar';
 import { useState } from 'react';
+import RegionSelector from './components/RegionSelector';
 
 function App() {
   const [searchedCountry, setSearchedCountry] = useState('');
@@ -14,10 +15,18 @@ function App() {
         <NavBar />
       </GridItem>
       <GridItem area="main">
-        <CountriesGridContainer>
+        <HStack
+          padding="15px"
+          justifyContent="space-between"
+          marginTop="35px"
+          flexWrap="wrap"
+        >
           <SearchBar
             onSearchCountry={(countryName) => setSearchedCountry(countryName)}
           />
+          <RegionSelector />
+        </HStack>
+        <CountriesGridContainer>
           <CountriesGrid searchedCountry={searchedCountry} />
         </CountriesGridContainer>
       </GridItem>
