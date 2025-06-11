@@ -18,14 +18,19 @@ export interface Country {
   capital: string[];
 }
 
-const useCountries = () => {
+const useCountries = (searchedCountry: string, deps: any[]) => {
   const [countries, setCountries] = useState<Country[]>([]);
   const [error, setError] = useState('');
 
   useEffect(() => {
     const controller = new AbortController();
     apiClient
-      .get<Country[]>('/all', { signal: controller.signal })
+      .get<Country[]>(
+        `${searchedCountry ? `/name/${searchedCountry}` : '/all'}`,
+        {
+          signal: controller.signal,
+        }
+      )
       .then((res) => setCountries(res.data))
       .catch((err) => {
         if (err instanceof CanceledError) return;
@@ -33,7 +38,7 @@ const useCountries = () => {
       });
 
     return () => controller.abort();
-  }, []);
+  }, deps);
 
   return { countries, error };
 };

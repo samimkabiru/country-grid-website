@@ -2,8 +2,12 @@ import { SimpleGrid, Text } from '@chakra-ui/react';
 import CountryCard from './CountryCard';
 import useCountries from '../hooks/useCountries';
 
-const CountriesGrid = () => {
-  const { error, countries } = useCountries();
+interface Props {
+  searchedCountry: string;
+}
+
+const CountriesGrid = ({ searchedCountry }: Props) => {
+  const { error, countries } = useCountries(searchedCountry, [searchedCountry]);
 
   return (
     <>
