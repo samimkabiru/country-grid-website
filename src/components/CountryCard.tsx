@@ -9,7 +9,7 @@ import {
   ListItem,
   Text,
 } from '@chakra-ui/react';
-import { Country } from './CountriesGrid';
+import { Country } from './../hooks/useCountries';
 
 interface Props {
   country: Country;
@@ -36,13 +36,13 @@ const CountryCard = ({
         />
       </Box>
       <CardBody>
-        <Heading as="h2" fontSize="2xl">
+        <Heading as="h2" fontSize="2xl" marginBottom={3}>
           {name.official}
         </Heading>
 
         <List>
           {countryDetails.map((countryDetail) => (
-            <ListItem>
+            <ListItem marginY="3px" key={countryDetail.detailName}>
               <HStack>
                 <Heading as="h3" fontSize="21px" fontWeight={400}>
                   {countryDetail.detailName}:
