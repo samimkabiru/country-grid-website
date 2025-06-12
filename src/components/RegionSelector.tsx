@@ -3,10 +3,11 @@ import { BsChevronDown } from 'react-icons/bs';
 
 interface Props {
   onSelectRegion: (region: string) => void;
+  selectedRegion: string;
 }
 
-const RegionSelector = ({ onSelectRegion }: Props) => {
-  const regions = ['Africa', 'America', 'Asia', 'Europe', 'Oceania'];
+const RegionSelector = ({ onSelectRegion, selectedRegion }: Props) => {
+  const regions = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania'];
 
   return (
     <Menu>
@@ -16,7 +17,7 @@ const RegionSelector = ({ onSelectRegion }: Props) => {
         as={Button}
         rightIcon={<BsChevronDown />}
       >
-        Filter By Region
+        {selectedRegion || 'Filter By Region'}
       </MenuButton>
       <MenuList>
         {regions.map((region) => (

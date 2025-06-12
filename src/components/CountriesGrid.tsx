@@ -8,10 +8,11 @@ interface Props {
 }
 
 const CountriesGrid = ({ selectedRegion, searchedCountry }: Props) => {
-  const { error, countries } = useCountries(searchedCountry, selectedRegion, [
-    searchedCountry,
-    selectedRegion,
-  ]);
+  const { error, countries } = useCountries(searchedCountry, [searchedCountry]);
+
+  const displayedCountries = selectedRegion
+    ? countries.filter((country) => country.region === selectedRegion)
+    : countries;
 
   return (
     <>
@@ -21,7 +22,7 @@ const CountriesGrid = ({ selectedRegion, searchedCountry }: Props) => {
         spacing={8}
         columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
       >
-        {countries.slice(0, 24).map((country) => (
+        {displayedCountries.slice(0, 24).map((country) => (
           <CountryCard key={country.name.official} country={country} />
         ))}
       </SimpleGrid>

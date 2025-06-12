@@ -26,6 +26,7 @@ function App() {
             onSearchCountry={(countryName) => setSearchedCountry(countryName)}
           />
           <RegionSelector
+            selectedRegion={selectedRegion}
             onSelectRegion={(region) => setSelectedRegion(region)}
           />
         </HStack>
