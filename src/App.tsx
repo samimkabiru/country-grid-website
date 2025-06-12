@@ -8,6 +8,7 @@ import RegionSelector from './components/RegionSelector';
 
 function App() {
   const [searchedCountry, setSearchedCountry] = useState('');
+  const [selectedRegion, setSelectedRegion] = useState('');
 
   return (
     <Grid templateAreas={`"nav" "main"`}>
@@ -16,7 +17,7 @@ function App() {
       </GridItem>
       <GridItem area="main">
         <HStack
-          padding="15px"
+          paddingX={{ sm: '15px', lg: '60px' }}
           justifyContent="space-between"
           marginTop="35px"
           flexWrap="wrap"
@@ -24,10 +25,15 @@ function App() {
           <SearchBar
             onSearchCountry={(countryName) => setSearchedCountry(countryName)}
           />
-          <RegionSelector />
+          <RegionSelector
+            onSelectRegion={(region) => setSelectedRegion(region)}
+          />
         </HStack>
         <CountriesGridContainer>
-          <CountriesGrid searchedCountry={searchedCountry} />
+          <CountriesGrid
+            selectedRegion={selectedRegion}
+            searchedCountry={searchedCountry}
+          />
         </CountriesGridContainer>
       </GridItem>
     </Grid>

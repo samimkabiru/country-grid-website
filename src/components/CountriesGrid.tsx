@@ -4,10 +4,14 @@ import useCountries from '../hooks/useCountries';
 
 interface Props {
   searchedCountry: string;
+  selectedRegion: string;
 }
 
-const CountriesGrid = ({ searchedCountry }: Props) => {
-  const { error, countries } = useCountries(searchedCountry, [searchedCountry]);
+const CountriesGrid = ({ selectedRegion, searchedCountry }: Props) => {
+  const { error, countries } = useCountries(searchedCountry, selectedRegion, [
+    searchedCountry,
+    selectedRegion,
+  ]);
 
   return (
     <>

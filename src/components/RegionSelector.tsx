@@ -1,7 +1,13 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react';
 import { BsChevronDown } from 'react-icons/bs';
 
-const RegionSelector = () => {
+interface Props {
+  onSelectRegion: (region: string) => void;
+}
+
+const RegionSelector = ({ onSelectRegion }: Props) => {
+  const regions = ['Africa', 'America', 'Asia', 'Europe', 'Oceania'];
+
   return (
     <Menu>
       <MenuButton
@@ -13,9 +19,15 @@ const RegionSelector = () => {
         Filter By Region
       </MenuButton>
       <MenuList>
-        <MenuItem>1</MenuItem>
-        <MenuItem>2</MenuItem>
-        <MenuItem>3</MenuItem>
+        {regions.map((region) => (
+          <MenuItem
+            key={region}
+            value={region}
+            onClick={() => onSelectRegion(region)}
+          >
+            {region}
+          </MenuItem>
+        ))}
       </MenuList>
     </Menu>
   );
