@@ -3,10 +3,13 @@ import ColorModeSwitch from './ColorModeSwitch';
 
 const NavBar = () => {
   return (
-    <HStack justifyContent="space-between" boxShadow="md">
-      <Heading paddingX={3} paddingY={5} fontSize="2xl">
-        Where in the world?
-      </Heading>
+    <HStack
+      paddingX={3}
+      paddingY={5}
+      justifyContent="space-between"
+      boxShadow="md"
+    >
+      <Heading fontSize="2xl">Where in the world?</Heading>
       <ColorModeSwitch />
     </HStack>
   );

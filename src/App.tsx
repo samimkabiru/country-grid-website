@@ -1,4 +1,4 @@
-import { Box, Grid, GridItem, HStack } from '@chakra-ui/react';
+import { Box, Container, Grid, GridItem, HStack } from '@chakra-ui/react';
 import NavBar from './components/NavBar';
 import CountriesGrid from './components/CountriesGrid';
 import CountriesGridContainer from './components/CountriesGridContainer';
@@ -26,21 +26,23 @@ function App() {
         )}
         {!selectedCountry && (
           <Box>
-            <HStack
-              justifyContent="space-between"
-              marginTop="35px"
-              flexWrap="wrap"
-            >
-              <SearchBar
-                onSearchCountry={(countryName) =>
-                  setSearchedCountry(countryName)
-                }
-              />
-              <RegionSelector
-                selectedRegion={selectedRegion}
-                onSelectRegion={(region) => setSelectedRegion(region)}
-              />
-            </HStack>
+            <Box paddingX="16px">
+              <HStack
+                justifyContent="space-between"
+                marginTop="35px"
+                flexWrap="wrap"
+              >
+                <SearchBar
+                  onSearchCountry={(countryName) =>
+                    setSearchedCountry(countryName)
+                  }
+                />
+                <RegionSelector
+                  selectedRegion={selectedRegion}
+                  onSelectRegion={(region) => setSelectedRegion(region)}
+                />
+              </HStack>
+            </Box>
             <CountriesGridContainer>
               <CountriesGrid
                 onSelectCountry={(countryName) =>

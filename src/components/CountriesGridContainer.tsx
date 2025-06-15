@@ -6,11 +6,7 @@ interface Props {
 }
 
 const CountriesGridContainer = ({ children }: Props) => {
-  return (
-    <Container p={0} maxWidth={'max-content'}>
-      {children}
-    </Container>
-  );
+  return <Container maxWidth={'max-content'}>{children}</Container>;
 };
 
 export default CountriesGridContainer;
