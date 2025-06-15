@@ -1,6 +1,7 @@
 import { Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
 import { useRef } from 'react';
 import { BsSearch } from 'react-icons/bs';
+import getTrimmedSearchInput from '../services/trimmedSearchInput';
 
 interface Props {
   onSearchCountry: (countryName: string) => void;
@@ -13,7 +14,8 @@ const SearchBar = ({ onSearchCountry }: Props) => {
     <form
       onSubmit={(event) => {
         event.preventDefault();
-        if (ref.current) onSearchCountry(ref.current.value);
+        if (ref.current)
+          onSearchCountry(getTrimmedSearchInput(ref.current.value));
       }}
     >
       <InputGroup>
