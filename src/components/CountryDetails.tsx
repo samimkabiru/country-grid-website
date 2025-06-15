@@ -84,7 +84,7 @@ const CountryDetails = ({ selectedCountry, onClose }: Props) => {
   ];
 
   return (
-    <>
+    <Box paddingX="16px">
       {error && <Text>{error}</Text>}
       <Button
         leftIcon={<BsArrowLeft />}
@@ -162,7 +162,7 @@ const CountryDetails = ({ selectedCountry, onClose }: Props) => {
           </HStack>
         </Box>
       </SimpleGrid>
-    </>
+    </Box>
   );
 };
 
