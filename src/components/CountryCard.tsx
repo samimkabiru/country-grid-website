@@ -13,10 +13,12 @@ import { Country } from './../hooks/useCountries';
 
 interface Props {
   country: Country;
+  onClick: () => void;
 }
 
 const CountryCard = ({
   country: { flags, name, population, region, capital },
+  onClick,
 }: Props) => {
   const countryDetails = [
     { detailName: 'Population', detailValue: population },
@@ -25,7 +27,7 @@ const CountryCard = ({
   ];
 
   return (
-    <Card borderRadius={10} overflow="hidden">
+    <Card borderRadius={10} overflow="hidden" onClick={onClick}>
       <Box height="250px" overflow="hidden">
         <Image
           width="full"
