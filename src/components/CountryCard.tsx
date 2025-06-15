@@ -21,7 +21,7 @@ const CountryCard = ({
   onClick,
 }: Props) => {
   const countryDetails = [
-    { detailName: 'Population', detailValue: population },
+    { detailName: 'Population', detailValue: population.toLocaleString() },
     { detailName: 'Region', detailValue: region },
     { detailName: 'Capital', detailValue: capital },
   ];

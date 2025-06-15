@@ -72,7 +72,7 @@ const CountryDetails = ({ selectedCountry, onClose }: Props) => {
       detailName: 'Native Name',
       detailValue: nativeNameCommon,
     },
-    { detailName: 'Population', detailValue: population?.toString() },
+    { detailName: 'Population', detailValue: population?.toLocaleString() },
     { detailName: 'Region', detailValue: region },
     { detailName: 'Capital', detailValue: capital?.join('') },
     { detailName: 'Top Level Domain', detailValue: tld?.join('') },
