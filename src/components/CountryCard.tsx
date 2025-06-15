@@ -27,7 +27,16 @@ const CountryCard = ({
   ];
 
   return (
-    <Card borderRadius={10} overflow="hidden" onClick={onClick}>
+    <Card
+      borderRadius={10}
+      overflow="hidden"
+      onClick={onClick}
+      _hover={{
+        boxShadow: 'lg',
+        cursor: 'pointer',
+        transition: 'box-shadow 0.2s',
+      }}
+    >
       <Box height="250px" overflow="hidden">
         <Image
           width="full"
