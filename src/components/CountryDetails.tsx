@@ -1,7 +1,6 @@
 import {
   Box,
   Button,
-  Container,
   Heading,
   HStack,
   Image,
@@ -12,8 +11,6 @@ import {
   useColorMode,
 } from '@chakra-ui/react';
 import useCountry from '../hooks/useCountry';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
 import { BsArrowLeft } from 'react-icons/bs';
 
 interface Props {
@@ -27,7 +24,6 @@ interface BorderCountry {
 
 const CountryDetails = ({ selectedCountry, onClose }: Props) => {
   const { colorMode } = useColorMode();
-  const [borderCountries, setBorderCountries] = useState<BorderCountry[]>([]);
   const {
     country: {
       flags,
@@ -41,6 +37,7 @@ const CountryDetails = ({ selectedCountry, onClose }: Props) => {
       borders,
     },
     error,
+    borderCountries,
   } = useCountry(selectedCountry, [selectedCountry]);
 
   const nativeNameCommon =
@@ -49,23 +46,6 @@ const CountryDetails = ({ selectedCountry, onClose }: Props) => {
   const countryCurrencies = currencies && Object.values(currencies)[0].name;
 
   const countryLanguages = languages && Object.values(languages).join(', ');
-
-  useEffect(() => {
-    const controller = new AbortController();
-
-    if (borders && Array.isArray(borders))
-      axios
-        .get<BorderCountry[]>(
-          `https://restcountries.com/v3.1/alpha?codes=${borders?.join(',')}`,
-          { signal: controller.signal }
-        )
-        .then((res) => setBorderCountries(res.data))
-        .catch((err) => {
-          if (err) return;
-        });
-
-    return () => controller.abort();
-  }, [borders]);
 
   const countryDetailsMap = [
     {

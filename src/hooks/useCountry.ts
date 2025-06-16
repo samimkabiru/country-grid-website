@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import apiClient from '../services/api-client';
-import { CanceledError } from 'axios';
+import axios, { CanceledError } from 'axios';
 
 interface Name {
   official: string;
@@ -35,9 +35,14 @@ export interface Country {
   borders: string[];
 }
 
+interface BorderCountry {
+  name: { common: string };
+}
+
 const useCountry = (selectedCountry: string, deps: any[]) => {
   const [country, setCountry] = useState<Country>({} as Country);
   const [error, setError] = useState('');
+  const [borderCountries, setBorderCountries] = useState<BorderCountry[]>([]);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -54,7 +59,26 @@ const useCountry = (selectedCountry: string, deps: any[]) => {
     return () => controller.abort();
   }, [...deps]);
 
-  return { country, error };
+  useEffect(() => {
+    const controller = new AbortController();
+
+    if (country.borders && Array.isArray(country.borders))
+      axios
+        .get<BorderCountry[]>(
+          `https://restcountries.com/v3.1/alpha?codes=${country.borders?.join(
+            ','
+          )}`,
+          { signal: controller.signal }
+        )
+        .then((res) => setBorderCountries(res.data))
+        .catch((err) => {
+          if (err) return;
+        });
+
+    return () => controller.abort();
+  }, [country.borders]);
+
+  return { country, error, borderCountries };
 };
 
 export default useCountry;
